@@ -14,14 +14,14 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "SDWebImage.h"
 #import "MBProgressHUD.h"
-
+#import <WFChatUIKit/WFChatUIKit.h>
 
 extern const CGFloat contentLabelFontSize;
 extern CGFloat maxContentLabelHeight; // 根据具体font而定
 
+static CGFloat textFieldH = 40;
 
-
-@interface FeedDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FeedDetailViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, WFCUFaceBoardDelegate>
 @property(nonatomic, strong)UITableView *tableView;
 
 @property(nonatomic, strong)WFMCommentMessageContent *content;
@@ -37,8 +37,15 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
 @property(nonatomic, strong)UIButton *operationButton;
 @property(nonatomic, strong)SDTimeLineCellOperationMenu *operationMenu;
 
+@property (nonatomic, strong)WFCUFaceBoard *emojInputView;
+@property (nonatomic, strong)UIView *inputBar;
+@property (nonatomic, strong)UIButton *inputSwitchBtn;
+@property (nonatomic, strong) UITextField *textField;
 
-
+@property (nonatomic, strong)NSString *commentToUser;
+@property (nonatomic, assign)BOOL isReplayingComment;
+@property (nonatomic, assign)CGFloat totalKeybordHeight;
+@property (nonatomic, assign)long long selectedCommentId;
 @end
 
 @implementation FeedDetailViewController
@@ -90,6 +97,97 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
     } error:^(int error_code) {
         
     }];
+    [self setupTextField];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMenuHidden:) name:UIMenuControllerDidHideMenuNotification object:nil];
+}
+
+- (void)onMenuHidden:(id)sender {
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    [menu setMenuItems:nil];
+    __weak typeof(self)ws = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ws.selectedCommentId = 0;
+    });
+    
+}
+
+- (UIButton *)inputSwitchBtn {
+    if (!_inputSwitchBtn) {
+        _inputSwitchBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width_sd - textFieldH, 0, textFieldH, textFieldH)];
+        
+        [_inputSwitchBtn setImage:[UIImage imageNamed:@"chat_input_bar_emoj"] forState:UIControlStateNormal];
+        [_inputSwitchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_inputSwitchBtn addTarget:self action:@selector(onSwitchBtn:) forControlEvents:UIControlEventTouchDown];
+        
+        _inputSwitchBtn.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+        _inputSwitchBtn.layer.borderWidth = 1;
+    }
+    return _inputSwitchBtn;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.inputBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_textField resignFirstResponder];
+    
+    [self.inputBar removeFromSuperview];
+}
+
+- (WFCUFaceBoard *)emojInputView {
+    if (!_emojInputView) {
+        _emojInputView = [[WFCUFaceBoard alloc] init];
+        _emojInputView.delegate = self;
+        _emojInputView.disableSticker = YES;
+    }
+    return _emojInputView;
+}
+
+- (void)onSwitchBtn:(id)sender {
+    if (self.textField.inputView == self.emojInputView) {
+        self.textField.inputView = nil;
+        [self.inputSwitchBtn setImage:[UIImage imageNamed:@"chat_input_bar_emoj"] forState:UIControlStateNormal];
+    } else {
+        self.textField.inputView = self.emojInputView;
+        [self.inputSwitchBtn setImage:[UIImage imageNamed:@"chat_input_bar_keyboard"] forState:UIControlStateNormal];
+    }
+    [self.textField reloadInputViews];
+}
+
+- (UIView *)inputBar {
+    if (!_inputBar) {
+        _inputBar = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.view.width_sd, textFieldH)];
+        [_inputBar addSubview:self.textField];
+        [_inputBar addSubview:self.inputSwitchBtn];
+        _inputBar.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+        _inputBar.layer.borderWidth = 1;
+    }
+    return _inputBar;
+}
+
+- (void)setupTextField
+{
+    _textField = [UITextField new];
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.delegate = self;
+    
+    //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
+    
+    _textField.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    
+    _textField.textColor = [WFCUConfigManager globalManager].textColor;
+
+    _textField.frame = CGRectMake(0, 0, self.view.width_sd - textFieldH, textFieldH);
+    
+    [_textField becomeFirstResponder];
+    [_textField resignFirstResponder];
 }
 
 - (void)setFeed:(WFMFeed *)feed {
@@ -150,10 +248,10 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
     _operationMenu = [SDTimeLineCellOperationMenu new];
     __weak typeof(self) weakSelf = self;
     [_operationMenu setLikeButtonClickedOperation:^{
-       
+        [weakSelf didClickLikeButtonInCell];
     }];
     [_operationMenu setCommentButtonClickedOperation:^{
-       
+       [weakSelf didClickCommentButtonInCell];
     }];
 
     UIView *contentView = [[UIView alloc] init];
@@ -227,6 +325,17 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
     
 }
 
+
+- (void)didClickCommentButtonInCell {
+    [_textField becomeFirstResponder];
+    [self adjustTableViewToFitKeyboard];
+    
+}
+
+- (void)didClickLikeButtonInCell {
+    
+}
+
 - (void)operationButtonClicked {
     BOOL isLiked = NO;
     for (WFMComment *comment in self.feed.comments) {
@@ -267,6 +376,96 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
     return (WFMCommentMessageContent *)self.message.content;
 }
 
+- (void)adjustTableViewToFitKeyboard
+{
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentEditingIndexthPath];
+//    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
+//    [self adjustTableViewToFitKeyboardWithRect:rect];
+}
+
+- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
+    
+    CGPoint offset = self.tableView.contentOffset;
+    offset.y += delta;
+    if (offset.y < 0) {
+        offset.y = 0;
+    }
+    
+    [self.tableView setContentOffset:offset animated:YES];
+}
+
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [_textField resignFirstResponder];
+    _textField.placeholder = nil;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    __weak typeof(self) weakSelf = self;
+    if (textField.text.length) {
+        [_textField resignFirstResponder];
+        
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:self.feed.feedUid text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
+            comment.commentUid = commentId;
+            comment.serverTime = timestamp;
+            [self.feed.comments addObject:comment];
+            [weakSelf.tableView reloadData];
+        } error:^(int error_code) {
+            
+        }];
+
+        _textField.text = @"";
+        _textField.placeholder = nil;
+        
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - WFCUFaceBoardDelegate <NSObject>
+- (void)didTouchEmoj:(NSString *)emojString {
+    [self.textField insertText:emojString];
+}
+
+- (void)didTouchBackEmoj {
+    [self.textField deleteBackward];
+}
+
+- (void)didTouchSendEmoj {
+    [self textFieldShouldReturn:self.textField];
+}
+
+
+- (void)keyboardNotification:(NSNotification *)notification
+{
+    NSDictionary *dict = notification.userInfo;
+    CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    
+    
+    
+    CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
+    if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
+        textFieldRect = rect;
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.inputBar.frame = textFieldRect;
+    }];
+    
+    CGFloat h = rect.size.height + textFieldH;
+    if (_totalKeybordHeight != h) {
+        _totalKeybordHeight = h;
+        [self adjustTableViewToFitKeyboard];
+    }
+}
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MomentsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MomentsDetailCell"];
     if (cell == nil) {
@@ -370,5 +569,8 @@ extern CGFloat maxContentLabelHeight; // 根据具体font而定
             break;
     }
     return nil;
+}
+-(void)dealloc {
+    [_textField removeFromSuperview];
 }
 @end
