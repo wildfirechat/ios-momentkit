@@ -749,9 +749,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *originImage;
     if ([mediaType isEqual:@"public.image"]) {
-        originImage =
-        [info objectForKey:UIImagePickerControllerOriginalImage];
-    }
+        originImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        if (!originImage) {
+            originImage =
+            [info objectForKey:UIImagePickerControllerOriginalImage];
+        }
+    } 
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     if (!originImage) {

@@ -333,7 +333,37 @@ static CGFloat textFieldH = 40;
 }
 
 - (void)didClickLikeButtonInCell {
-    
+    BOOL isLiked = NO;
+    int index = 0;
+    WFMComment *comment = nil;
+    for (int i = 0; i < self.feed.comments.count; i++) {
+        comment = [self.feed.comments objectAtIndex:i];
+        if (comment.type == WFMComment_Thumbup_Type && [comment.sender isEqualToString:[WFCCNetworkService sharedInstance].userId]) {
+            index = i;
+            isLiked = YES;
+            break;
+        }
+    }
+    __weak typeof(self)weakSelf = self;
+    if (isLiked) {
+        [self.feed.comments removeObjectAtIndex:index];
+        [self.tableView reloadData];
+        [[WFMomentService sharedService] deleteComments:comment.commentUid feedId:self.feed.feedUid success:^{
+            [weakSelf.feed.comments removeObject:comment];
+            [weakSelf.tableView reloadData];
+        } error:^(int error_code) {
+            
+        }];
+    } else {
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMComment_Thumbup_Type feedId:self.feed.feedUid text:nil replyTo:nil extra:nil success:^(long long commentId, long long timestamp) {
+            comment.commentUid = commentId;
+            comment.serverTime = timestamp;
+            [self.feed.comments insertObject:comment atIndex:0];
+            [weakSelf.tableView reloadData];
+        } error:^(int error_code) {
+            
+        }];
+    }
 }
 
 - (void)operationButtonClicked {
@@ -416,7 +446,7 @@ static CGFloat textFieldH = 40;
         __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:self.feed.feedUid text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
             comment.commentUid = commentId;
             comment.serverTime = timestamp;
-            [self.feed.comments addObject:comment];
+            [self.feed.comments insertObject:comment atIndex:0];
             [weakSelf.tableView reloadData];
         } error:^(int error_code) {
             
