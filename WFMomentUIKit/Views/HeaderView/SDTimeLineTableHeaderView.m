@@ -32,6 +32,8 @@
 #import "SDWebImage.h"
 #import <WFMomentClient/WFMomentClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
+#import "UIColor+YH.h"
+#import "UIFont+YH.h"
 @interface SDTimeLineTableHeaderView ()
 @property(nonatomic, strong)UIImageView *backgroundImageView;
 @property(nonatomic, strong)UILabel *backgroundTipLabel;
@@ -72,16 +74,18 @@
     [_backgroundImageView addSubview:_backgroundTipLabel];
     
     _iconView = [UIImageView new];
+    _iconView.backgroundColor = [UIColor clearColor];
     [_iconView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
-    _iconView.layer.borderColor = [WFCUConfigManager globalManager].backgroudColor.CGColor;
-    _iconView.layer.borderWidth = 3;
+    _iconView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _iconView.layer.borderWidth = 2;
+    _iconView.layer.masksToBounds = YES;
     [self addSubview:_iconView];
     
     _nameLabel = [UILabel new];
     _nameLabel.text = me.displayName;
     _nameLabel.textColor = [WFCUConfigManager globalManager].backgroudColor;
     _nameLabel.textAlignment = NSTextAlignmentRight;
-    _nameLabel.font = [UIFont boldSystemFontOfSize:15];
+    _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:20];
     [self addSubview:_nameLabel];
     
     
@@ -89,7 +93,7 @@
     _backgroundImageView.frame = CGRectMake(0, -60, self.bounds.size.width, self.bounds.size.height + 20);
     
     _iconView.frame = CGRectMake(self.bounds.size.width-15-70, self.bounds.size.height-70 - 20, 70, 70);
-    
+    _iconView.layer.cornerRadius = 10;
     
     _nameLabel.tag = 1000;
 //    [_nameLabel setSingleLineAutoResizeWithMaxWidth:200];

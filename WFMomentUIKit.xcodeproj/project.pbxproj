@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1403DCE8242EF8C60070FEE5 /* WFMomentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE5242EF8C60070FEE5 /* WFMomentClient.framework */; };
+		1403DCE9242EF8C60070FEE5 /* WFMomentClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE5242EF8C60070FEE5 /* WFMomentClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1403DCEA242EF8C60070FEE5 /* WFChatClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE6242EF8C60070FEE5 /* WFChatClient.framework */; };
+		1403DCEB242EF8C60070FEE5 /* WFChatClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE6242EF8C60070FEE5 /* WFChatClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1403DCEC242EF8C60070FEE5 /* WFChatUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE7242EF8C60070FEE5 /* WFChatUIKit.framework */; };
+		1403DCED242EF8C60070FEE5 /* WFChatUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1403DCE7242EF8C60070FEE5 /* WFChatUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		144379B1242F903F003129E0 /* UIColor+YH.m in Sources */ = {isa = PBXBuildFile; fileRef = 144379AD242F903E003129E0 /* UIColor+YH.m */; };
+		144379B2242F903F003129E0 /* UIFont+YH.m in Sources */ = {isa = PBXBuildFile; fileRef = 144379AE242F903F003129E0 /* UIFont+YH.m */; };
+		144379B3242F903F003129E0 /* UIFont+YH.h in Headers */ = {isa = PBXBuildFile; fileRef = 144379AF242F903F003129E0 /* UIFont+YH.h */; };
+		144379B4242F903F003129E0 /* UIColor+YH.h in Headers */ = {isa = PBXBuildFile; fileRef = 144379B0242F903F003129E0 /* UIColor+YH.h */; };
 		2F30BD83241C53D500CADB2C /* FeedDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F30BD81241C53D500CADB2C /* FeedDetailViewController.h */; };
 		2F30BD84241C53D500CADB2C /* FeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F30BD82241C53D500CADB2C /* FeedDetailViewController.m */; };
 		2F30BD87241C56C400CADB2C /* MomentsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F30BD85241C56C400CADB2C /* MomentsDetailCell.m */; };
 		2F30BD88241C56C400CADB2C /* MomentsDetailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F30BD86241C56C400CADB2C /* MomentsDetailCell.h */; };
-		2FC24C0522EDED4E00FBB28F /* WFChatUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC24C0222EDED4E00FBB28F /* WFChatUIKit.framework */; };
-		2FC24C0722EDED4E00FBB28F /* WFChatClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC24C0422EDED4E00FBB28F /* WFChatClient.framework */; };
 		2FD5427222DB4FB9001531A8 /* WFMomentUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD5427022DB4FB9001531A8 /* WFMomentUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FD542AF22DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD5428122DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.m */; };
 		2FD542B022DB5223001531A8 /* MomentsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD5428222DB5223001531A8 /* MomentsMessageViewController.m */; };
@@ -147,7 +155,6 @@
 		2FD543A922DB539B001531A8 /* MLLabel+Override.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD5438C22DB539B001531A8 /* MLLabel+Override.h */; };
 		2FD543AD22DB53BB001531A8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD543AB22DB53BB001531A8 /* MBProgressHUD.m */; };
 		2FD543AE22DB53BB001531A8 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD543AC22DB53BB001531A8 /* MBProgressHUD.h */; };
-		2FD780E1241DA55E00018DC2 /* WFMomentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD780E0241DA55E00018DC2 /* WFMomentClient.framework */; };
 		90E3B8C422DD44F90024E1F9 /* MomentSettingsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3B8C222DD44F90024E1F9 /* MomentSettingsTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90E3B8C522DD44F90024E1F9 /* MomentSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E3B8C322DD44F90024E1F9 /* MomentSettingsTableViewController.m */; };
 		90E3B8C822DD4A530024E1F9 /* MomentBlockListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3B8C622DD4A530024E1F9 /* MomentBlockListViewController.h */; };
@@ -158,7 +165,30 @@
 		90E3B8D122DD4CE10024E1F9 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E3B8CF22DD4CE10024E1F9 /* MemberCell.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1403DCEE242EF8C60070FEE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1403DCEB242EF8C60070FEE5 /* WFChatClient.framework in Embed Frameworks */,
+				1403DCE9242EF8C60070FEE5 /* WFMomentClient.framework in Embed Frameworks */,
+				1403DCED242EF8C60070FEE5 /* WFChatUIKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1403DCE5242EF8C60070FEE5 /* WFMomentClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFMomentClient.framework; path = WFMomentUIKit/Frameworks/WFMomentClient.framework; sourceTree = "<group>"; };
+		1403DCE6242EF8C60070FEE5 /* WFChatClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFChatClient.framework; path = WFMomentUIKit/Frameworks/WFChatClient.framework; sourceTree = "<group>"; };
+		1403DCE7242EF8C60070FEE5 /* WFChatUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFChatUIKit.framework; path = WFMomentUIKit/Frameworks/WFChatUIKit.framework; sourceTree = "<group>"; };
+		144379AD242F903E003129E0 /* UIColor+YH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YH.m"; sourceTree = "<group>"; };
+		144379AE242F903F003129E0 /* UIFont+YH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+YH.m"; sourceTree = "<group>"; };
+		144379AF242F903F003129E0 /* UIFont+YH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+YH.h"; sourceTree = "<group>"; };
+		144379B0242F903F003129E0 /* UIColor+YH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YH.h"; sourceTree = "<group>"; };
 		2F30BD81241C53D500CADB2C /* FeedDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedDetailViewController.h; sourceTree = "<group>"; };
 		2F30BD82241C53D500CADB2C /* FeedDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedDetailViewController.m; sourceTree = "<group>"; };
 		2F30BD85241C56C400CADB2C /* MomentsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsDetailCell.m; sourceTree = "<group>"; };
@@ -318,15 +348,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD780E1241DA55E00018DC2 /* WFMomentClient.framework in Frameworks */,
-				2FC24C0722EDED4E00FBB28F /* WFChatClient.framework in Frameworks */,
-				2FC24C0522EDED4E00FBB28F /* WFChatUIKit.framework in Frameworks */,
+				1403DCEA242EF8C60070FEE5 /* WFChatClient.framework in Frameworks */,
+				1403DCE8242EF8C60070FEE5 /* WFMomentClient.framework in Frameworks */,
+				1403DCEC242EF8C60070FEE5 /* WFChatUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		144379AC242F902E003129E0 /* Categroy */ = {
+			isa = PBXGroup;
+			children = (
+				144379B0242F903F003129E0 /* UIColor+YH.h */,
+				144379AD242F903E003129E0 /* UIColor+YH.m */,
+				144379AF242F903F003129E0 /* UIFont+YH.h */,
+				144379AE242F903F003129E0 /* UIFont+YH.m */,
+			);
+			path = Categroy;
+			sourceTree = "<group>";
+		};
 		2FD5426322DB4FB9001531A8 = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +388,7 @@
 		2FD5426F22DB4FB9001531A8 /* WFMomentUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				144379AC242F902E003129E0 /* Categroy */,
 				90E3B8C122DD44D10024E1F9 /* Settings */,
 				2FD542D822DB529E001531A8 /* Vendor */,
 				2FD5428922DB5223001531A8 /* BaseClasses */,
@@ -366,14 +408,14 @@
 			children = (
 				2FD5428522DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.h */,
 				2FD5428122DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.m */,
-				2FD5428622DB5223001531A8 /* MomentsMessageViewController.h */,
-				2FD5428222DB5223001531A8 /* MomentsMessageViewController.m */,
 				2FD5428722DB5223001531A8 /* CreateFeedViewController.h */,
 				2FD5428322DB5223001531A8 /* CreateFeedViewController.m */,
-				2FD5428422DB5223001531A8 /* SDTimeLineTableViewController.h */,
-				2FD5428822DB5223001531A8 /* SDTimeLineTableViewController.m */,
 				2F30BD81241C53D500CADB2C /* FeedDetailViewController.h */,
 				2F30BD82241C53D500CADB2C /* FeedDetailViewController.m */,
+				2FD5428622DB5223001531A8 /* MomentsMessageViewController.h */,
+				2FD5428222DB5223001531A8 /* MomentsMessageViewController.m */,
+				2FD5428422DB5223001531A8 /* SDTimeLineTableViewController.h */,
+				2FD5428822DB5223001531A8 /* SDTimeLineTableViewController.m */,
 			);
 			path = TimeLineController;
 			sourceTree = "<group>";
@@ -501,6 +543,9 @@
 		2FD542D122DB522D001531A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1403DCE6242EF8C60070FEE5 /* WFChatClient.framework */,
+				1403DCE7242EF8C60070FEE5 /* WFChatUIKit.framework */,
+				1403DCE5242EF8C60070FEE5 /* WFMomentClient.framework */,
 				2FD780E0241DA55E00018DC2 /* WFMomentClient.framework */,
 				2FC24C0422EDED4E00FBB28F /* WFChatClient.framework */,
 				2FC24C0222EDED4E00FBB28F /* WFChatUIKit.framework */,
@@ -750,6 +795,7 @@
 			files = (
 				90E3B8C422DD44F90024E1F9 /* MomentSettingsTableViewController.h in Headers */,
 				2FD5435C22DB52EF001531A8 /* SDWebImageOperation.h in Headers */,
+				144379B3242F903F003129E0 /* UIFont+YH.h in Headers */,
 				2FD542B222DB5223001531A8 /* SDTimeLineTableViewController.h in Headers */,
 				2FD542B922DB5223001531A8 /* SDBaseTableViewController.h in Headers */,
 				2FD542BC22DB5223001531A8 /* SDBaseNavigationController.h in Headers */,
@@ -810,6 +856,7 @@
 				2FD542BD22DB5223001531A8 /* MomentMediaCell.h in Headers */,
 				2FD5430022DB52B6001531A8 /* SDRefresh.h in Headers */,
 				2FD5435E22DB52EF001531A8 /* SDWebImageDownloader.h in Headers */,
+				144379B4242F903F003129E0 /* UIColor+YH.h in Headers */,
 				2FD543AE22DB53BB001531A8 /* MBProgressHUD.h in Headers */,
 				2FD542BA22DB5223001531A8 /* SDBaseRefreshView.h in Headers */,
 				2FD5435822DB52EF001531A8 /* SDWebImageDecoder.h in Headers */,
@@ -838,6 +885,7 @@
 				2FD5426A22DB4FB9001531A8 /* Frameworks */,
 				2FD5426B22DB4FB9001531A8 /* Resources */,
 				9036FE7B22ED467000FD45E3 /* ShellScript */,
+				1403DCEE242EF8C60070FEE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -859,6 +907,7 @@
 				TargetAttributes = {
 					2FD5426C22DB4FB9001531A8 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -918,6 +967,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144379B1242F903F003129E0 /* UIColor+YH.m in Sources */,
 				2FD542C522DB5223001531A8 /* SDTimeLineRefreshFooter.m in Sources */,
 				2FD5433922DB52EF001531A8 /* UIImage+WebP.m in Sources */,
 				2FD542B022DB5223001531A8 /* MomentsMessageViewController.m in Sources */,
@@ -937,6 +987,7 @@
 				2FD542CB22DB5223001531A8 /* SDTimeLineRefreshHeader.m in Sources */,
 				2FD5434422DB52EF001531A8 /* FLAnimatedImageView+WebCache.m in Sources */,
 				2FD542F422DB52B6001531A8 /* SDWaitingView.m in Sources */,
+				144379B2242F903F003129E0 /* UIFont+YH.m in Sources */,
 				90E3B8CD22DD4BCC0024E1F9 /* MementBlockListCollectionViewLayout.m in Sources */,
 				2FD542F322DB52B6001531A8 /* SDPhotoBrowser.m in Sources */,
 				2FD542C722DB5223001531A8 /* SDTimeLineTableHeaderView.m in Sources */,
@@ -1113,10 +1164,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = AN6EJL87UZ;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1125,6 +1177,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/WFMomentUIKit/Frameworks",
 				);
 				INFOPLIST_FILE = WFMomentUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1142,6 +1195,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};
@@ -1151,10 +1206,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = AN6EJL87UZ;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1163,6 +1219,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/WFMomentUIKit/Frameworks",
 				);
 				INFOPLIST_FILE = WFMomentUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1179,6 +1236,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};

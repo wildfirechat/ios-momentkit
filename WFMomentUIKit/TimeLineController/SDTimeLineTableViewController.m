@@ -85,7 +85,7 @@ static CGFloat textFieldH = 40;
     [super viewDidLoad];
     //为self.view 添加背景颜色设置
     
-    self.view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.edgesForExtendedLayout = UIRectEdgeTop;

@@ -39,7 +39,7 @@
 #import "SDWebImage.h"
 #import <WFChatClient/WFCChatClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
-
+#import "UIFont+YH.h"
 
 const CGFloat contentLabelFontSize = 15;
 CGFloat maxContentLabelHeight = 0; // 根据具体font而定
@@ -88,14 +88,16 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(portraitClicked)];
     [_iconView addGestureRecognizer:tap];
     _iconView.userInteractionEnabled = YES;
-    
+    _iconView.layer.cornerRadius = 10;
+    _iconView.layer.cornerRadius = 10;
     
     _nameLable = [UILabel new];
-    _nameLable.font = [UIFont systemFontOfSize:14];
-    _nameLable.textColor = [UIColor colorWithRed:(54 / 255.0) green:(71 / 255.0) blue:(121 / 255.0) alpha:0.9];
+    _nameLable.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:17];
+    _nameLable.textColor = [UIColor colorWithRed:91/255.0 green:110/255.0 blue:142/255.0 alpha:1.0];
     
     _contentLabel = [UILabel new];
-    _contentLabel.font = [UIFont systemFontOfSize:contentLabelFontSize];
+    _contentLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:contentLabelFontSize];
+    _contentLabel.textColor = [UIColor blackColor];
     _contentLabel.numberOfLines = 0;
     if (maxContentLabelHeight == 0) {
         maxContentLabelHeight = _contentLabel.font.lineHeight * 3;
@@ -109,6 +111,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     
     _operationButton = [UIButton new];
     [_operationButton setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
+    _operationButton.backgroundColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1.0];
+    _operationButton.layer.cornerRadius = 2;
     [_operationButton addTarget:self action:@selector(operationButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     _picContainerView = [SDWeiXinPhotoContainerView new];
@@ -152,8 +156,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _iconView.sd_layout
     .leftSpaceToView(contentView, margin)
     .topSpaceToView(contentView, margin + 5)
-    .widthIs(40)
-    .heightIs(40);
+    .widthIs(42)
+    .heightIs(42);
     
     _nameLable.sd_layout
     .leftSpaceToView(_iconView, margin)
@@ -200,8 +204,8 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     _operationButton.sd_layout
     .rightSpaceToView(contentView, margin)
     .centerYEqualToView(_timeLabel)
-    .heightIs(25)
-    .widthIs(25);
+    .heightIs(18)
+    .widthIs(30);
     
     _commentView.sd_layout
     .leftEqualToView(_contentLabel)
@@ -209,7 +213,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     .topSpaceToView(_timeLabel, margin); // 已经在内部实现高度自适应所以不需要再设置高度
     
     _operationMenu.sd_layout
-    .rightSpaceToView(_operationButton, 0)
+    .rightSpaceToView(_operationButton, 10)
     .heightIs(36)
     .centerYEqualToView(_operationButton)
     .widthIs(0);
@@ -225,7 +229,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }
 }
 - (void)configTheme{
-    self.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    self.backgroundColor = [UIColor whiteColor];
     _contentLabel.textColor = [WFCUConfigManager globalManager].textColor;
     _timeLabel.textColor = [UIColor lightGrayColor];
 }

@@ -31,8 +31,8 @@
 #import "SDTimeLineCellModel.h"
 #import "MLLinkLabel.h"
 #import <WFChatUIKit/WFChatUIKit.h>
-
-
+#import "UIColor+YH.h"
+#import "UIFont+YH.h"
 @interface SDTimeLineCellCommentView () <MLLinkLabelDelegate>
 
 @property (nonatomic, strong) NSArray *likeItemsArray;
@@ -65,6 +65,7 @@
 
 - (void)setupViews
 {
+    
     _bgImageView = [UIImageView new];
     UIImage *bgImage = [[[UIImage imageNamed:@"LikeCmtBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     _bgImageView.image = bgImage;
@@ -72,7 +73,7 @@
     [self addSubview:_bgImageView];
     
     _likeLabel = [MLLinkLabel new];
-    _likeLabel.font = [UIFont systemFontOfSize:14];
+    _likeLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:14];
     _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName : TimeLineCellHighlightedColor};
     _likeLabel.isAttributedContent = YES;
     [self addSubview:_likeLabel];
@@ -85,10 +86,10 @@
 
 - (void)configTheme{
     
-    self.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
-    _bgImageView.tintColor = SDColor(230, 230, 230, 1.0f);
+    self.backgroundColor = [UIColor colorWithHexString:@"0xf7f7f7"];
+    _bgImageView.tintColor = [UIColor colorWithHexString:@"0xf7f7f7"];
     _likeLabel.textColor = [UIColor blackColor];
-    _likeLableBottomLine.backgroundColor = SDColor(210, 210, 210, 1.0f);
+    _likeLableBottomLine.backgroundColor = [UIColor colorWithHexString:@"0xe7e7e7"];
 }
 
 - (void)setCommentItemsArray:(NSArray *)commentItemsArray
@@ -100,9 +101,9 @@
     for (int i = 0; i < needsToAddCount; i++) {
         MLLinkLabel *label = [MLLinkLabel new];
         UIColor *highLightColor = TimeLineCellHighlightedColor;
-        label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
+        label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor, NSFontAttributeName: [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:14]};
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:14];
+        label.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:14];
         label.delegate = self;
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickComment:)]];
         [self addSubview:label];
@@ -138,11 +139,12 @@
     
     NSTextAttachment *attach = [NSTextAttachment new];
     attach.image = [UIImage imageNamed:@"Like"];
-    attach.bounds = CGRectMake(0, -3, 16, 16);
+    attach.bounds = CGRectMake(0, - 1, 12 * 1.2, 12);
     NSAttributedString *likeIcon = [NSAttributedString attributedStringWithAttachment:attach];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithAttributedString:likeIcon];
     
+    [attributedText appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
     for (int i = 0; i < likeItemsArray.count; i++) {
         SDTimeLineCellLikeItemModel *model = likeItemsArray[i];
         if (i > 0) {
@@ -190,7 +192,7 @@
         self.fixedWidth = nil; // 取消固定高度约束
     }
     
-    CGFloat margin = 5;
+    CGFloat margin = 10;
     
     UIView *lastTopView = nil;
     
@@ -198,7 +200,7 @@
         _likeLabel.sd_resetLayout
         .leftSpaceToView(self, margin)
         .rightSpaceToView(self, margin)
-        .topSpaceToView(lastTopView, 10)
+        .topSpaceToView(lastTopView, 5)
         .autoHeightRatio(0);
         
         lastTopView = _likeLabel;
