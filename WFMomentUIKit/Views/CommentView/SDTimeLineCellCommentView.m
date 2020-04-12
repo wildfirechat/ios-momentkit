@@ -265,6 +265,9 @@
 - (NSMutableAttributedString *)generateAttributedStringWithLikeItemModel:(SDTimeLineCellLikeItemModel *)model
 {
     NSString *text = model.userName;
+    if (!text) {
+        return [[NSMutableAttributedString alloc] init];
+    }
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
     UIColor *highLightColor = [UIColor blueColor];
     [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
