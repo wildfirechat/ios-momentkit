@@ -79,17 +79,15 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     return self;
 }
 
-- (void)setup
-{
-    
+- (void)setup {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveOperationButtonClickedNotification:) name:kSDTimeLineCellOperationButtonClickedNotification object:nil];
     
     _iconView = [UIImageView new];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(portraitClicked)];
     [_iconView addGestureRecognizer:tap];
     _iconView.userInteractionEnabled = YES;
-    _iconView.layer.cornerRadius = 10;
-    _iconView.layer.cornerRadius = 10;
+    _iconView.layer.cornerRadius = 5;
+    _iconView.layer.masksToBounds = YES;
     
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:17];
