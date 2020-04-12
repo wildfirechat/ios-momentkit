@@ -435,10 +435,12 @@ static CGFloat textFieldH = 40;
         }];
         
         [cell setPortraitClickedBlock:^(NSIndexPath *indexPath) {
-            SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
-            SDTimeLineTableViewController *stltvc = [[SDTimeLineTableViewController alloc] init];
-            stltvc.userId = model.feed.sender;
-            [weakSelf.navigationController pushViewController:stltvc animated:YES];
+            if (!weakSelf.userId) {
+                SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
+                SDTimeLineTableViewController *stltvc = [[SDTimeLineTableViewController alloc] init];
+                stltvc.userId = model.feed.sender;
+                [weakSelf.navigationController pushViewController:stltvc animated:YES];
+            }
         }];
         
         cell.delegate = self;
