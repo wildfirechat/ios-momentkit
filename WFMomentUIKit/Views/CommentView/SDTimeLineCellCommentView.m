@@ -85,11 +85,10 @@
 }
 
 - (void)configTheme{
-    
-    self.backgroundColor = [UIColor colorWithHexString:@"0xf7f7f7"];
-    _bgImageView.tintColor = [UIColor colorWithHexString:@"0xf7f7f7"];
-    _likeLabel.textColor = [UIColor blackColor];
-    _likeLableBottomLine.backgroundColor = [UIColor colorWithHexString:@"0xe7e7e7"];
+    self.backgroundColor = [WFCUConfigManager globalManager].frameBackgroudColor;
+    _bgImageView.tintColor = [WFCUConfigManager globalManager].frameBackgroudColor;
+    _likeLabel.textColor = [WFCUConfigManager globalManager].textColor;
+    _likeLableBottomLine.backgroundColor = [WFCUConfigManager globalManager].separateColor;
 }
 
 - (void)setCommentItemsArray:(NSArray *)commentItemsArray
@@ -102,7 +101,7 @@
         MLLinkLabel *label = [MLLinkLabel new];
         UIColor *highLightColor = TimeLineCellHighlightedColor;
         label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor, NSFontAttributeName: [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:14]};
-        label.textColor = [UIColor blackColor];
+        label.textColor = [WFCUConfigManager globalManager].textColor;
         label.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:14];
         label.delegate = self;
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickComment:)]];

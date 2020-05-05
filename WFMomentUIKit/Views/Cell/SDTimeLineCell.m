@@ -227,7 +227,7 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
     }
 }
 - (void)configTheme{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
     _contentLabel.textColor = [WFCUConfigManager globalManager].textColor;
     _timeLabel.textColor = [UIColor lightGrayColor];
 }
