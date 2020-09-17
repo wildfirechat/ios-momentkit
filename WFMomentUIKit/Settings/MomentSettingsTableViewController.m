@@ -105,7 +105,7 @@
                 switchCell.on = NO;
             }
             __weak typeof(self)ws = self;
-            [switchCell setOnSwitch:^(BOOL value, void (^result)(BOOL success)) {
+            [switchCell setOnSwitch:^(BOOL value, int type, void (^result)(BOOL success)) {
                 [[WFMomentService sharedService] updateUserProfile:WFMUpdateUserProfileType_StrangerVisiableCount strValue:nil intValue:value ? 10 : 0 success:^{
                     dispatch_async(dispatch_get_main_queue(), ^{
                         result(YES);
