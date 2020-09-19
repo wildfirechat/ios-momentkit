@@ -12,7 +12,7 @@
 #import "SDWeiXinPhotoContainerView.h"
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import "MBProgressHUD.h"
 #import <WFChatUIKit/WFChatUIKit.h>
 

@@ -32,7 +32,7 @@
 #import "UIView+SDAutoLayout.h"
 
 #import "SDPhotoBrowser.h"
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import <WFMomentClient/WFMomentClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
 

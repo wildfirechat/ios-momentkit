@@ -36,7 +36,7 @@
 #import "SDWeiXinPhotoContainerView.h"
 
 #import "SDTimeLineCellOperationMenu.h"
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import <WFChatClient/WFCChatClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
 #import "UIFont+YH.h"
