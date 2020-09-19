@@ -29,7 +29,7 @@
 #import "SDTimeLineTableHeaderView.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "UIView+SDAutoLayout.h"
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import <WFMomentClient/WFMomentClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
 #import "UIColor+YH.h"

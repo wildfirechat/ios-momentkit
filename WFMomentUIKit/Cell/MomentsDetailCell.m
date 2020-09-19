@@ -8,7 +8,7 @@
 
 #import "MomentsDetailCell.h"
 #import <WFMomentClient/WFMomentClient.h>
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import <WFChatClient/WFCChatClient.h>
 #import "UIView+SDAutoLayout.h"
 

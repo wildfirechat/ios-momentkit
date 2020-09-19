@@ -12,7 +12,7 @@
 #import <WFMomentClient/WFMomentClient.h>
 #import <WFChatClient/WFCChatClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
-#import "SDWebImage.h"
+#import <SDWebImage/SDWebImage.h>
 #import "Predefine.h"
 #import "MBProgressHUD.h"
 

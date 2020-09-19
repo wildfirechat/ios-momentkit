@@ -8,8 +8,7 @@
 
 #import "MomentsMessageCell.h"
 #import <WFMomentClient/WFMomentClient.h>
-#import "SDWebImage.h"
-
+#import <SDWebImage/SDWebImage.h>
 
 
 @interface MomentsMessageCell()
