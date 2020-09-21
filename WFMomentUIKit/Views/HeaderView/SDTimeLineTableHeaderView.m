@@ -88,18 +88,18 @@
     _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:20];
     [self addSubview:_nameLabel];
     
-    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //-60, 0, 40, 0
-    _backgroundImageView.frame = CGRectMake(0, -60, self.bounds.size.width, self.bounds.size.height + 20);
+    _backgroundImageView.frame = CGRectMake(0, -60, screenWidth, self.bounds.size.height + 20);
     
-    _iconView.frame = CGRectMake(self.bounds.size.width-15-70, self.bounds.size.height-70 - 20, 70, 70);
+    _iconView.frame = CGRectMake(screenWidth-15-70, self.bounds.size.height-70 - 20, 70, 70);
     _iconView.layer.cornerRadius = 10;
     
     _nameLabel.tag = 1000;
 //    [_nameLabel setSingleLineAutoResizeWithMaxWidth:200];
-    _nameLabel.frame = CGRectMake(self.bounds.size.width-15-70-150-4, self.bounds.size.height-70, 150, 20);
+    _nameLabel.frame = CGRectMake(screenWidth-15-70-150-4, self.bounds.size.height-70, 150, 20);
     
-    _newMsgContainer = [[UIView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 120)/2, self.bounds.size.height - 32, 120, 36)];
+    _newMsgContainer = [[UIView alloc] initWithFrame:CGRectMake((screenWidth - 120)/2, self.bounds.size.height - 32, 120, 36)];
     [_newMsgContainer setBackgroundColor:[UIColor grayColor]];
     _newMsgContainer.layer.masksToBounds = YES;
     _newMsgContainer.layer.cornerRadius = 4.0;

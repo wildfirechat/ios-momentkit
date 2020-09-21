@@ -99,7 +99,8 @@
     if (keyPath != kSDBaseRefreshViewObserveKeyPath) return;
     
     if (!self.noMoreData && self.scrollView.contentSize.height > self.scrollView.height && self.scrollView.contentOffset.y > self.scrollView.contentSize.height - self.scrollView.height && self.refreshState != SDWXRefreshViewStateRefreshing) {
-        self.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.width, kSDTimeLineRefreshFooterHeight);
+        //iOS14 crash....
+        //self.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.width, kSDTimeLineRefreshFooterHeight);
         self.hidden = NO;
         self.refreshState = SDWXRefreshViewStateRefreshing;
     } else if (self.refreshState == SDWXRefreshViewStateNormal) {
