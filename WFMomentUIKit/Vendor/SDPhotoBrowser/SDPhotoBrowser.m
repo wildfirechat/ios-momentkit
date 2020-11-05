@@ -9,7 +9,7 @@
 #import "SDPhotoBrowser.h"
 #import <SDWebImage/SDWebImage.h>
 #import "SDBrowserImageView.h"
-
+#import "Predefine.h"
  
 //  ============在这里方便配置样式相关设置===========
 
@@ -29,6 +29,7 @@
     BOOL _hasShowedFistView;
     UILabel *_indexLabel;
     UIButton *_saveButton;
+    UIButton *_allButton;
     UIActivityIndicatorView *_indicatorView;
     BOOL _willDisappear;
 }
@@ -84,6 +85,22 @@
     [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     _saveButton = saveButton;
     [self addSubview:saveButton];
+    
+    // Show all button
+    if (self.showAll) {
+        UIButton *allButton = [[UIButton alloc] init];
+        [allButton setTitle:@"全部" forState:UIControlStateNormal];
+        [allButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        allButton.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
+        allButton.layer.cornerRadius = 5;
+        allButton.clipsToBounds = YES;
+        [allButton addTarget:self action:@selector(allImage) forControlEvents:UIControlEventTouchUpInside];
+        _allButton = allButton;
+        [self addSubview:allButton];
+    } else {
+        _allButton = nil;
+    }
+    
 }
 
 - (void)saveImage
@@ -99,6 +116,17 @@
     _indicatorView = indicator;
     [[UIApplication sharedApplication].keyWindow addSubview:indicator];
     [indicator startAnimating];
+}
+
+- (void)allImage {
+    if ([self.delegate respondsToSelector:@selector(photoBrowserShowAllView)]) {
+        [self.delegate photoBrowserShowAllView];
+    }
+    [self removeFromSuperview];
+    if ([self.delegate respondsToSelector:@selector(photoBrowserDidDismiss:)]) {
+        [self.delegate photoBrowserDidDismiss:self];
+    }
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
@@ -183,7 +211,12 @@
         NSIndexPath *path = [NSIndexPath indexPathForItem:currentIndex inSection:0];
         sourceView = [view cellForItemAtIndexPath:path];
     }else {
-        sourceView = self.sourceImagesContainerView.subviews[0];
+        if (self.sourceImagesContainerView.subviews.count) {
+            sourceView = self.sourceImagesContainerView.subviews[0];
+        } else {
+            sourceView = self.sourceImagesContainerView;
+        }
+        
     }
     
     UIImageView *tempView = [[UIImageView alloc] init];
@@ -202,6 +235,7 @@
     [self addSubview:tempView];
 
     _saveButton.hidden = YES;
+    _allButton.hidden = YES;
     
     [UIView animateWithDuration:SDPhotoBrowserHideImageAnimationDuration animations:^{
         CGRect frame = self.frame;
@@ -212,7 +246,9 @@
         _indexLabel.alpha = 0.1;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        [self.delegate photoBrowserDidDismiss:self];
+        if ([self.delegate respondsToSelector:@selector(photoBrowserDidDismiss:)]) {
+            [self.delegate photoBrowserDidDismiss:self];
+        }
     }];
 }
 
@@ -260,8 +296,9 @@
        // [self showFirstImage];
     }
     
-    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 35);
+    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, kStatusBarAndNavigationBarHeight - 64 + 35);
     _saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
+    _allButton.frame = CGRectMake(100, self.bounds.size.height - 70, 50, 25);
 }
 
 - (void)show
@@ -292,7 +329,12 @@
         NSIndexPath *path = [NSIndexPath indexPathForItem:self.currentImageIndex inSection:0];
         sourceView = [view cellForItemAtIndexPath:path];
     }else {
-        sourceView = self.sourceImagesContainerView.subviews[0];
+        if (self.sourceImagesContainerView.subviews.count) {
+            sourceView = self.sourceImagesContainerView.subviews[0];
+        } else {
+            sourceView = self.sourceImagesContainerView;
+        }
+        
     }
     CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
     
