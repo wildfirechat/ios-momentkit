@@ -247,7 +247,11 @@
             for (UIView *subView in cell.subviews) {
                 [subView removeFromSuperview];
             }
-            [cell addSubview:self.textView];
+            if (@available(iOS 14, *)) {
+                [cell.contentView addSubview:self.textView];
+            } else {
+                [cell addSubview:self.textView];
+            }
         }
         
         return cell;

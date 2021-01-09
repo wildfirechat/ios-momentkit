@@ -385,7 +385,7 @@ static CGFloat textFieldH = 40;
     
     _textField.textColor = [WFCUConfigManager globalManager].textColor;
 
-    _textField.frame = CGRectMake(0, 0, self.view.width_sd - textFieldH, textFieldH);
+    _textField.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - textFieldH, textFieldH);
     
     [_textField becomeFirstResponder];
     [_textField resignFirstResponder];

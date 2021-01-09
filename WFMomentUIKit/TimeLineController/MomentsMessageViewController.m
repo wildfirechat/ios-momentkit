@@ -93,7 +93,11 @@
             UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40)];
             moreLabel.textAlignment = NSTextAlignmentCenter;
             moreLabel.text = @"更多消息";
-            [cell addSubview:moreLabel];
+            if (@available(iOS 14, *)) {
+                [cell.contentView addSubview:moreLabel];
+            } else {
+                [cell addSubview:moreLabel];
+            }
         }
         return cell;
     }

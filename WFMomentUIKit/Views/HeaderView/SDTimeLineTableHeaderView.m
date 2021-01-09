@@ -70,7 +70,6 @@
     _backgroundTipLabel.textAlignment = NSTextAlignmentCenter;
     _backgroundTipLabel.textColor = [UIColor grayColor];
     _backgroundTipLabel.font = [UIFont systemFontOfSize:14];
-    _backgroundTipLabel.center = self.center;
     [_backgroundImageView addSubview:_backgroundTipLabel];
     
     _iconView = [UIImageView new];
@@ -91,6 +90,7 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //-60, 0, 40, 0
     _backgroundImageView.frame = CGRectMake(0, -60, screenWidth, self.bounds.size.height + 20);
+    _backgroundTipLabel.frame = CGRectMake((screenWidth-120)/2, self.bounds.size.height/2, 120, 20);
     
     _iconView.frame = CGRectMake(screenWidth-15-70, self.bounds.size.height-70 - 20, 70, 70);
     _iconView.layer.cornerRadius = 10;
