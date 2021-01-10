@@ -355,7 +355,7 @@ static CGFloat textFieldH = 40;
             
         }];
     } else {
-        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMComment_Thumbup_Type feedId:self.feed.feedUid text:nil replyTo:nil extra:nil success:^(long long commentId, long long timestamp) {
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMComment_Thumbup_Type feedId:self.feed.feedUid replyComment:0 text:nil replyTo:nil extra:nil success:^(long long commentId, long long timestamp) {
             comment.commentUid = commentId;
             comment.serverTime = timestamp;
             [self.feed.comments insertObject:comment atIndex:0];
@@ -443,7 +443,7 @@ static CGFloat textFieldH = 40;
     if (textField.text.length) {
         [_textField resignFirstResponder];
         
-        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:self.feed.feedUid text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:self.feed.feedUid replyComment:0 text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
             comment.commentUid = commentId;
             comment.serverTime = timestamp;
             [self.feed.comments insertObject:comment atIndex:0];

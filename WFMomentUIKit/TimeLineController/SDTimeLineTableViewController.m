@@ -55,7 +55,8 @@ static CGFloat textFieldH = 40;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;
 @property (nonatomic, strong) NSIndexPath *currentEditingIndexthPath;
-@property (nonatomic, copy) NSString *commentToUser;
+@property (nonatomic, strong) NSString *commentToUser;
+@property (nonatomic, assign) long long replyCommentId;
 
 @property (nonatomic, assign)BOOL isLoading;
 @property (nonatomic, assign)BOOL hasNew;
@@ -430,6 +431,7 @@ static CGFloat textFieldH = 40;
                 [weakSelf.textField becomeFirstResponder];
                 weakSelf.isReplayingComment = YES;
                 weakSelf.commentToUser = commentUserId;
+                weakSelf.replyCommentId = commentId;
                 [weakSelf adjustTableViewToFitKeyboardWithRect:rectInWindow];
             }
         }];
@@ -607,7 +609,7 @@ static CGFloat textFieldH = 40;
     NSMutableArray *temp = [NSMutableArray arrayWithArray:model.likeItemsArray];
     __weak typeof(self)weakSelf = self;
     if (!model.isLiked) {
-        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMComment_Thumbup_Type feedId:model.feed.feedUid text:nil replyTo:nil extra:nil success:^(long long commentId, long long timestamp) {
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMComment_Thumbup_Type feedId:model.feed.feedUid replyComment:0 text:nil replyTo:nil extra:nil success:^(long long commentId, long long timestamp) {
             if (!model.feed.comments) {
                 model.feed.comments = [[NSMutableArray alloc] init];
             }
@@ -697,7 +699,7 @@ static CGFloat textFieldH = 40;
     if (textField.text.length) {
         [_textField resignFirstResponder];
         SDTimeLineCellModel *model = self.dataArray[_currentEditingIndexthPath.row];
-        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:model.feed.feedUid text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
+        __block WFMComment *comment = [[WFMomentService sharedService] postComment:WFMContent_Text_Type feedId:model.feed.feedUid replyComment:self.isReplayingComment?self.replyCommentId:0 text:textField.text  replyTo:self.isReplayingComment?self.commentToUser:nil extra:nil success:^(long long commentId, long long timestamp) {
             if (!model.feed.comments) {
                 model.feed.comments = [[NSMutableArray alloc] init];
             }
