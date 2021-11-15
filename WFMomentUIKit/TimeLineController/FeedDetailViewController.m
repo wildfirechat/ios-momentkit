@@ -24,7 +24,6 @@ static CGFloat textFieldH = 40;
 @interface FeedDetailViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, WFCUFaceBoardDelegate>
 @property(nonatomic, strong)UITableView *tableView;
 
-@property(nonatomic, strong)WFMCommentMessageContent *content;
 @property(nonatomic, strong)WFMFeed *feed;
 
 @property(nonatomic, strong)UIImageView *iconView;
@@ -61,7 +60,7 @@ static CGFloat textFieldH = 40;
     self.tableView.tableHeaderView = [self getHeaderView];
     
     
-    WFCCUserInfo *sender = [[WFCCIMService sharedWFCIMService] getUserInfo:self.content.sender refresh:NO];
+    WFCCUserInfo *sender = [[WFCCIMService sharedWFCIMService] getUserInfo:self.message.fromUser refresh:NO];
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:sender.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
     if (sender.friendAlias.length) {
         self.nameLable.text = sender.friendAlias;
@@ -72,10 +71,19 @@ static CGFloat textFieldH = 40;
 //    WFMContent_Image_Type,
 //    WFMContent_Video_Type,
 //    WFMContent_Link_Type
-    if (self.content.type == WFMContent_Text_Type || self.content.type == WFMContent_Image_Type || self.content.type == WFMContent_Video_Type) {
-        self.contentLabel.text = self.content.text;
+    if([self.message.content isKindOfClass:[WFMCommentMessageContent class]]) {
+        WFMCommentMessageContent *content = (WFMCommentMessageContent *)self.message.content;
+        if (content.type == WFMContent_Text_Type || content.type == WFMContent_Image_Type || content.type == WFMContent_Video_Type) {
+            self.contentLabel.text = content.text;
+        }
+        self.picContainerView.picPathStringsArray = content.feedMedias;
+    } else {
+        WFMFeedMessageContent *content = (WFMFeedMessageContent *)self.message.content;
+        if (content.type == WFMContent_Text_Type || content.type == WFMContent_Image_Type || content.type == WFMContent_Video_Type) {
+            self.contentLabel.text = content.text;
+        }
+        self.picContainerView.picPathStringsArray = content.medias;
     }
-    self.picContainerView.picPathStringsArray = self.content.feedMedias;
     
     self.timeLabel.text = [FeedDetailViewController formatTimeDetailLabel:self.message.serverTime];
     
@@ -90,7 +98,13 @@ static CGFloat textFieldH = 40;
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapBackground:)]];
     __weak typeof(self)ws = self;
-    [[WFMomentService sharedService] getFeed:self.content.feedId success:^(WFMFeed * _Nonnull feed) {
+    long long feedId;
+    if([self.message.content isKindOfClass:[WFMCommentMessageContent class]]) {
+        feedId = ((WFMCommentMessageContent *)self.message.content).feedId;
+    } else {
+        feedId = ((WFMFeedMessageContent *)self.message.content).feedId;
+    }
+    [[WFMomentService sharedService] getFeed:feedId success:^(WFMFeed * _Nonnull feed) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ws.feed = feed;
         });
@@ -400,10 +414,6 @@ static CGFloat textFieldH = 40;
     if (_operationMenu.isShowing) {
         _operationMenu.show = NO;
     }
-}
-
-- (WFMCommentMessageContent *)content {
-    return (WFMCommentMessageContent *)self.message.content;
 }
 
 - (void)adjustTableViewToFitKeyboard

@@ -151,7 +151,7 @@
         [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
         self.nameLabel.text = userInfo.displayName;
         self.digestLabel.text = self.feedContent.text;
-        self.timeLabel.text = @"三个小时前";
+        self.timeLabel.text = [MomentsMessageCell formatTimeDetailLabel:self.object.serverTime];
         if (self.feedContent.medias.count) {
             [self.mediaView sd_setImageWithURL:[NSURL URLWithString:self.feedContent.medias[0].mediaUrl]];
         } else {
