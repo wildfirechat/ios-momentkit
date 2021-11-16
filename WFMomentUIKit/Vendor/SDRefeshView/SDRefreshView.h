@@ -40,7 +40,7 @@ typedef enum {
 
 @interface SDRefreshView : UIView
 
-@property (nonatomic, copy) void(^beginRefreshingOperation)();
+@property (nonatomic, copy) void(^beginRefreshingOperation)(void);
 @property (nonatomic, weak) id beginRefreshingTarget;
 @property (nonatomic, assign) SEL beginRefreshingAction;
 @property (nonatomic, assign) BOOL isEffectedByNavigationController;

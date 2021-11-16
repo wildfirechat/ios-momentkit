@@ -107,7 +107,7 @@ static CGFloat textFieldH = 40;
                 weakSelf.hasMore = NO;
             } else {
                 for (WFMFeed *feed in feeds) {
-                    [weakSelf.dataArray addObject:[self modelOfFeed:feed]];
+                    [weakSelf.dataArray addObject:[weakSelf modelOfFeed:feed]];
                 }
                 [weakSelf.tableView reloadDataWithExistedHeightCache];
             }
@@ -162,12 +162,12 @@ static CGFloat textFieldH = 40;
         [weakSelf loadModels:YES success:^(NSArray<WFMFeed *> *feeds) {
             [weakSelf.dataArray removeAllObjects];
             for (WFMFeed *feed in feeds) {
-                [weakSelf.dataArray addObject:[self modelOfFeed:feed]];
+                [weakSelf.dataArray addObject:[weakSelf modelOfFeed:feed]];
             }
             [weakSelf.tableView reloadData];
             weakSelf.isLoading = NO;
             [weakHeader endRefreshing];
-            if (!self.userId) {
+            if (!weakSelf.userId) {
                 [[WFMomentService sharedService] updateLastReadTimestamp];
             }
         } error:^(int error_code) {
@@ -614,12 +614,12 @@ static CGFloat textFieldH = 40;
                 model.feed.comments = [[NSMutableArray alloc] init];
             }
             [model.feed.comments insertObject:comment atIndex:0];
-            [weakSelf.tableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[weakSelf.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationFade];
             [weakSelf saveCache];
         } error:^(int error_code) {
             
         }];
-        [self.tableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadRowsAtIndexPaths:@[weakSelf.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
         model.liked = YES;
     } else {
         SDTimeLineCellLikeItemModel *tempLikeModel = nil;
@@ -640,7 +640,7 @@ static CGFloat textFieldH = 40;
                 }
             }
 
-            [weakSelf.tableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[weakSelf.currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationFade];
             [weakSelf saveCache];
         } error:^(int error_code) {
             
