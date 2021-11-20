@@ -83,7 +83,7 @@
                 entry.mediaWidth = self.imageList[i].size.width;
                 entry.mediaHeight = self.imageList[i].size.height;
                 
-                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(self.imageList[i], 0.8) mediaType:Media_Type_FAVORITE success:^(NSString *remoteUrl) {
+                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(self.imageList[i], 0.8) mediaType:Media_Type_MOMENTS success:^(NSString *remoteUrl) {
                     entry.mediaUrl = remoteUrl;
                 } progress:^(long uploaded, long total) {
                     hud.progress = uploaded * 1.f / (total * self.imageList.count) + i * 1.f/self.imageList.count;
@@ -96,7 +96,7 @@
                 }
                 
                 UIImage *thumbnail = [WFCCUtilities generateThumbnail:self.imageList[i] withWidth:120 withHeight:120];
-                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(thumbnail, 0.5) mediaType:Media_Type_FAVORITE success:^(NSString *remoteUrl) {
+                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(thumbnail, 0.5) mediaType:Media_Type_MOMENTS success:^(NSString *remoteUrl) {
                     entry.thumbUrl = remoteUrl;
                 } progress:^(long uploaded, long total) {
                     
@@ -113,7 +113,7 @@
             
             [entryUrls addObject:entry];
             
-            success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(self.videoThumb, 0.8) mediaType:Media_Type_FAVORITE success:^(NSString *remoteUrl) {
+            success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:UIImageJPEGRepresentation(self.videoThumb, 0.8) mediaType:Media_Type_MOMENTS success:^(NSString *remoteUrl) {
                 entry.thumbUrl = remoteUrl;
             } progress:^(long uploaded, long total) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -125,7 +125,7 @@
             
             if (success) {
                 NSData *videoData = [NSData dataWithContentsOfFile:self.videoPath];
-                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:videoData mediaType:Media_Type_FAVORITE success:^(NSString *remoteUrl) {
+                success = [[WFCCIMService sharedWFCIMService] syncUploadMedia:nil mediaData:videoData mediaType:Media_Type_MOMENTS success:^(NSString *remoteUrl) {
                     entry.mediaUrl = remoteUrl;
                 } progress:^(long uploaded, long total) {
                     hud.progress = uploaded * 0.9f / videoData.length + 0.1f;

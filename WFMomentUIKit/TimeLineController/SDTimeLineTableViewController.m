@@ -772,7 +772,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         hud.label.text = @"上传中...";
         [hud showAnimated:YES];
         
-        [[WFCCIMService sharedWFCIMService] uploadMedia:nil mediaData:portraitData mediaType:Media_Type_FAVORITE success:^(NSString *remoteUrl) {
+        [[WFCCIMService sharedWFCIMService] uploadMedia:nil mediaData:portraitData mediaType:Media_Type_PORTRAIT success:^(NSString *remoteUrl) {
             [[WFMomentService sharedService] updateUserProfile:WFMUpdateUserProfileType_BackgroudUrl strValue:remoteUrl intValue:0 success:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [hud hideAnimated:NO];
