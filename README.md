@@ -31,19 +31,19 @@ iOS 朋友圈UI组件库
 Client SDK功能齐全，UIKit开源可以进一步定制：
 
 首页
-![预览1](https://static.wildfirechat.cn/ios-moment1.png)
+![预览1](http://static.wildfirechat.cn/ios-moment1.png)
 
 发送界面
-![预览2](https://static.wildfirechat.cn/ios-moment2.png)
+![预览2](http://static.wildfirechat.cn/ios-moment2.png)
 
 消息界面
-![预览3](https://static.wildfirechat.cn/ios-moment3.png)
+![预览3](http://static.wildfirechat.cn/ios-moment3.png)
 
 详情界面
-![预览4](https://static.wildfirechat.cn/ios-moment4.png)
+![预览4](http://static.wildfirechat.cn/ios-moment4.png)
 
 设置界面
-![预览5](https://static.wildfirechat.cn/ios-moment5.png)
+![预览5](http://static.wildfirechat.cn/ios-moment5.png)
 
 ## 编译
 依赖```momentclient```，```WFChatUIKit```和```WFChatClient```。先编译[ios-chat](https://github.com/wildfirechat/ios-chat)项目，编译完成之后，在```ios-chat/wfchat/Frameworks```目录下找到的W```FChatUIKit.framework```和```WFChatClient.framework```拷贝到本项目```Frameworks```目录下(如果本地没有此目录就新建一个)。然后购买或申请试用```momentclient```库，同样放到```Frameworks```目录下。然后分别编译模拟器和真机，生成的kit sdk包在bin目录下。
