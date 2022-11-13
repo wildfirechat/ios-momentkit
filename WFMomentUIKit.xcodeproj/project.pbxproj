@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,13 +11,10 @@
 		144379B2242F903F003129E0 /* UIFont+YH.m in Sources */ = {isa = PBXBuildFile; fileRef = 144379AE242F903F003129E0 /* UIFont+YH.m */; };
 		144379B3242F903F003129E0 /* UIFont+YH.h in Headers */ = {isa = PBXBuildFile; fileRef = 144379AF242F903F003129E0 /* UIFont+YH.h */; };
 		144379B4242F903F003129E0 /* UIColor+YH.h in Headers */ = {isa = PBXBuildFile; fileRef = 144379B0242F903F003129E0 /* UIColor+YH.h */; };
-		2F1A289C251649B3001350B6 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1A289B251649B3001350B6 /* SDWebImage.framework */; };
 		2F30BD83241C53D500CADB2C /* FeedDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F30BD81241C53D500CADB2C /* FeedDetailViewController.h */; };
 		2F30BD84241C53D500CADB2C /* FeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F30BD82241C53D500CADB2C /* FeedDetailViewController.m */; };
 		2F30BD87241C56C400CADB2C /* MomentsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F30BD85241C56C400CADB2C /* MomentsDetailCell.m */; };
 		2F30BD88241C56C400CADB2C /* MomentsDetailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F30BD86241C56C400CADB2C /* MomentsDetailCell.h */; };
-		2FC24C0522EDED4E00FBB28F /* WFChatUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC24C0222EDED4E00FBB28F /* WFChatUIKit.framework */; };
-		2FC24C0722EDED4E00FBB28F /* WFChatClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC24C0422EDED4E00FBB28F /* WFChatClient.framework */; };
 		2FD5427222DB4FB9001531A8 /* WFMomentUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD5427022DB4FB9001531A8 /* WFMomentUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FD542AF22DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD5428122DB5223001531A8 /* CreateFeedMediaCollectionViewLayout.m */; };
 		2FD542B022DB5223001531A8 /* MomentsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD5428222DB5223001531A8 /* MomentsMessageViewController.m */; };
@@ -106,7 +103,6 @@
 		2FD543A922DB539B001531A8 /* MLLabel+Override.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD5438C22DB539B001531A8 /* MLLabel+Override.h */; };
 		2FD543AD22DB53BB001531A8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD543AB22DB53BB001531A8 /* MBProgressHUD.m */; };
 		2FD543AE22DB53BB001531A8 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD543AC22DB53BB001531A8 /* MBProgressHUD.h */; };
-		2FD780E1241DA55E00018DC2 /* WFMomentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD780E0241DA55E00018DC2 /* WFMomentClient.framework */; };
 		90E3B8C422DD44F90024E1F9 /* MomentSettingsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3B8C222DD44F90024E1F9 /* MomentSettingsTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90E3B8C522DD44F90024E1F9 /* MomentSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E3B8C322DD44F90024E1F9 /* MomentSettingsTableViewController.m */; };
 		90E3B8C822DD4A530024E1F9 /* MomentBlockListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3B8C622DD4A530024E1F9 /* MomentBlockListViewController.h */; };
@@ -115,6 +111,10 @@
 		90E3B8CD22DD4BCC0024E1F9 /* MementBlockListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E3B8CB22DD4BCC0024E1F9 /* MementBlockListCollectionViewLayout.m */; };
 		90E3B8D022DD4CE10024E1F9 /* MemberCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3B8CE22DD4CE10024E1F9 /* MemberCell.h */; };
 		90E3B8D122DD4CE10024E1F9 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E3B8CF22DD4CE10024E1F9 /* MemberCell.m */; };
+		B7D5FF072920C194006476FB /* WFMomentClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D5FF042920C194006476FB /* WFMomentClient.xcframework */; };
+		B7D5FF082920C194006476FB /* WFChatUIKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D5FF052920C194006476FB /* WFChatUIKit.xcframework */; };
+		B7D5FF092920C194006476FB /* WFChatClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D5FF062920C194006476FB /* WFChatClient.xcframework */; };
+		B7D5FF0B2920C1E2006476FB /* SDWebImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D5FF0A2920C1E2006476FB /* SDWebImage.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,13 +122,10 @@
 		144379AE242F903F003129E0 /* UIFont+YH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+YH.m"; sourceTree = "<group>"; };
 		144379AF242F903F003129E0 /* UIFont+YH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+YH.h"; sourceTree = "<group>"; };
 		144379B0242F903F003129E0 /* UIColor+YH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YH.h"; sourceTree = "<group>"; };
-		2F1A289B251649B3001350B6 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		2F30BD81241C53D500CADB2C /* FeedDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedDetailViewController.h; sourceTree = "<group>"; };
 		2F30BD82241C53D500CADB2C /* FeedDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedDetailViewController.m; sourceTree = "<group>"; };
 		2F30BD85241C56C400CADB2C /* MomentsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsDetailCell.m; sourceTree = "<group>"; };
 		2F30BD86241C56C400CADB2C /* MomentsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsDetailCell.h; sourceTree = "<group>"; };
-		2FC24C0222EDED4E00FBB28F /* WFChatUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFChatUIKit.framework; path = Frameworks/WFChatUIKit.framework; sourceTree = "<group>"; };
-		2FC24C0422EDED4E00FBB28F /* WFChatClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFChatClient.framework; path = Frameworks/WFChatClient.framework; sourceTree = "<group>"; };
 		2FD5426D22DB4FB9001531A8 /* WFMomentUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WFMomentUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD5427022DB4FB9001531A8 /* WFMomentUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFMomentUIKit.h; sourceTree = "<group>"; };
 		2FD5427122DB4FB9001531A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,7 +217,6 @@
 		2FD5438C22DB539B001531A8 /* MLLabel+Override.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLLabel+Override.h"; sourceTree = "<group>"; };
 		2FD543AB22DB53BB001531A8 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2FD543AC22DB53BB001531A8 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		2FD780E0241DA55E00018DC2 /* WFMomentClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFMomentClient.framework; path = Frameworks/WFMomentClient.framework; sourceTree = "<group>"; };
 		90E3B8C222DD44F90024E1F9 /* MomentSettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MomentSettingsTableViewController.h; sourceTree = "<group>"; };
 		90E3B8C322DD44F90024E1F9 /* MomentSettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MomentSettingsTableViewController.m; sourceTree = "<group>"; };
 		90E3B8C622DD4A530024E1F9 /* MomentBlockListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MomentBlockListViewController.h; sourceTree = "<group>"; };
@@ -229,6 +225,10 @@
 		90E3B8CB22DD4BCC0024E1F9 /* MementBlockListCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MementBlockListCollectionViewLayout.m; path = WFMomentUIKit/TimeLineController/MementBlockListCollectionViewLayout.m; sourceTree = SOURCE_ROOT; };
 		90E3B8CE22DD4CE10024E1F9 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		90E3B8CF22DD4CE10024E1F9 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		B7D5FF042920C194006476FB /* WFMomentClient.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WFMomentClient.xcframework; path = Frameworks/WFMomentClient.xcframework; sourceTree = "<group>"; };
+		B7D5FF052920C194006476FB /* WFChatUIKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WFChatUIKit.xcframework; path = Frameworks/WFChatUIKit.xcframework; sourceTree = "<group>"; };
+		B7D5FF062920C194006476FB /* WFChatClient.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WFChatClient.xcframework; path = Frameworks/WFChatClient.xcframework; sourceTree = "<group>"; };
+		B7D5FF0A2920C1E2006476FB /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SDWebImage.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,10 +236,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F1A289C251649B3001350B6 /* SDWebImage.framework in Frameworks */,
-				2FD780E1241DA55E00018DC2 /* WFMomentClient.framework in Frameworks */,
-				2FC24C0722EDED4E00FBB28F /* WFChatClient.framework in Frameworks */,
-				2FC24C0522EDED4E00FBB28F /* WFChatUIKit.framework in Frameworks */,
+				B7D5FF072920C194006476FB /* WFMomentClient.xcframework in Frameworks */,
+				B7D5FF0B2920C1E2006476FB /* SDWebImage.xcframework in Frameworks */,
+				B7D5FF082920C194006476FB /* WFChatUIKit.xcframework in Frameworks */,
+				B7D5FF092920C194006476FB /* WFChatClient.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +432,9 @@
 		2FD542D122DB522D001531A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2FD780E0241DA55E00018DC2 /* WFMomentClient.framework */,
-				2FC24C0422EDED4E00FBB28F /* WFChatClient.framework */,
-				2FC24C0222EDED4E00FBB28F /* WFChatUIKit.framework */,
+				B7D5FF062920C194006476FB /* WFChatClient.xcframework */,
+				B7D5FF052920C194006476FB /* WFChatUIKit.xcframework */,
+				B7D5FF042920C194006476FB /* WFMomentClient.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -498,7 +498,7 @@
 		2FD5430822DB52EF001531A8 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				2F1A289B251649B3001350B6 /* SDWebImage.framework */,
+				B7D5FF0A2920C1E2006476FB /* SDWebImage.xcframework */,
 			);
 			path = SDWebImage;
 			sourceTree = "<group>";
@@ -685,7 +685,6 @@
 				2FD5426922DB4FB9001531A8 /* Sources */,
 				2FD5426A22DB4FB9001531A8 /* Frameworks */,
 				2FD5426B22DB4FB9001531A8 /* Resources */,
-				9036FE7B22ED467000FD45E3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -740,26 +739,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9036FE7B22ED467000FD45E3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbash xcodescript.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2FD5426922DB4FB9001531A8 /* Sources */ = {
