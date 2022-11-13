@@ -46,13 +46,17 @@ Client SDK功能齐全，UIKit开源可以进一步定制：
 ![预览5](http://static.wildfirechat.cn/ios-moment5.png)
 
 ## 编译
-依赖```momentclient```，```WFChatUIKit```和```WFChatClient```。先编译[ios-chat](https://github.com/wildfirechat/ios-chat)项目，编译完成之后，在```ios-chat/wfchat/Frameworks```目录下找到的W```FChatUIKit.framework```和```WFChatClient.framework```拷贝到本项目```Frameworks```目录下(如果本地没有此目录就新建一个)。然后购买或申请试用```momentclient```库，同样放到```Frameworks```目录下。然后分别编译模拟器和真机，生成的kit sdk包在bin目录下。
+命令行下执行命令
+```
+sh build.sh WFMomentUIKit
+```
+编译成功后，会生成SDK在项目的bin目录下。
 
 
 ## 使用
-生成的sdk需要集成到[ios-chat](https://github.com/wildfirechat/ios-chat)项目使用，拷贝kit sdk和client sdk到```ios-chat/wfchat/WildFireChat/Moments```，替换掉已经存在的两个占位的空库，运行测试即可。
+生成的sdk需要集成到[ios-chat](https://github.com/wildfirechat/ios-chat)项目使用，拷贝kit sdk和client sdk到```ios-chat/wfchat/Frameworks```，并添加依赖。
 
-由于都是动态库，所以导入其它项目时需要embed方式，另外打包上架时需要去除x64架构，去除方法可以参考```ios-chat/wfchat/removex86.sh```脚本
+由于都是动态库，所以导入其它项目时需要embed方式。
 
 ## Base项目
 本工程是基于[GSD_WeiXin](https://github.com/gsdios/GSD_WeiXin)二次开发而成，感谢原作者的贡献
