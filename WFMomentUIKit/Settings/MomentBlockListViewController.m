@@ -34,7 +34,7 @@
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(onRightBtn:)];
     
-    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, kStatusBarAndNavigationBarHeight, self.view.bounds.size.width-16, 40)];
+    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, [WFCUUtilities wf_navigationFullHeight], self.view.bounds.size.width-16, 40)];
     if (self.block) {
         self.tipLabel.text = @"不看他（她）的朋友圈";
     } else {
@@ -59,7 +59,7 @@
     self.memberCollectionViewLayout = [[MementBlockListCollectionViewLayout alloc] initWithItemMargin:3];
     int memberCollectionCount = (int)self.userIds.count + 2;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kStatusBarAndNavigationBarHeight + 40 + 8, self.view.frame.size.width, [self.memberCollectionViewLayout getHeigthOfItemCount:memberCollectionCount]) collectionViewLayout:self.memberCollectionViewLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, [WFCUUtilities wf_navigationFullHeight] + 40 + 8, self.view.frame.size.width, [self.memberCollectionViewLayout getHeigthOfItemCount:memberCollectionCount]) collectionViewLayout:self.memberCollectionViewLayout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
