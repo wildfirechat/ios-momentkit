@@ -7,6 +7,7 @@
 //
 
 #import "MomentsMessageViewController.h"
+#import <WFChatClient/WFCChatClient.h>
 #import <WFMomentClient/WFMomentClient.h>
 #import "MomentsMessageCell.h"
 #import "FeedDetailViewController.h"

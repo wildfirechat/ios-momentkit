@@ -10,6 +10,7 @@
 #import <WFMomentClient/WFMomentClient.h>
 #import <SDWebImage/SDWebImage.h>
 #import <WFChatClient/WFCChatClient.h>
+#import <WFChatUIKit/WFChatUIKit.h>
 #import "UIView+SDAutoLayout.h"
 
 @interface MomentsDetailCell()
@@ -143,7 +144,7 @@
 - (void)updateCell {
     if (self.comment) {
         WFCCUserInfo *userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:self.comment.sender refresh:NO];
-        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
         self.nameLabel.text = userInfo.displayName;
         if (self.comment.type == WFMComment_Thumbup_Type) {
             self.digestLabel.hidden = YES;

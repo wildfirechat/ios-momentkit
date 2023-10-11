@@ -61,7 +61,7 @@ static CGFloat textFieldH = 40;
     
     
     WFCCUserInfo *sender = [[WFCCIMService sharedWFCIMService] getUserInfo:self.message.fromUser refresh:NO];
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:sender.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:sender.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     if (sender.friendAlias.length) {
         self.nameLable.text = sender.friendAlias;
     } else {

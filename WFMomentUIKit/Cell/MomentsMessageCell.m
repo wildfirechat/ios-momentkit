@@ -8,6 +8,7 @@
 
 #import "MomentsMessageCell.h"
 #import <WFMomentClient/WFMomentClient.h>
+#import <WFChatUIKit/WFChatUIKit.h>
 #import <SDWebImage/SDWebImage.h>
 
 
@@ -124,7 +125,7 @@
 - (void)updateCell {
     if (self.commentContent) {
         WFCCUserInfo *userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:self.commentContent.sender refresh:NO];
-        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
         self.nameLabel.text = userInfo.displayName;
         if (self.commentContent.type == WFMComment_Thumbup_Type) {
             self.digestLabel.hidden = YES;
@@ -148,7 +149,7 @@
         }
     } else if(self.feedContent) {
         WFCCUserInfo *userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:self.feedContent.sender refresh:NO];
-        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+        [self.portraitView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
         self.nameLabel.text = userInfo.displayName;
         self.digestLabel.text = self.feedContent.text;
         self.timeLabel.text = [MomentsMessageCell formatTimeDetailLabel:self.object.serverTime];

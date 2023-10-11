@@ -27,6 +27,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <WFChatClient/WFCChatClient.h>
 #import <WFMomentClient/WFMomentClient.h>
 
 @class SDTimeLineCellLikeItemModel, SDTimeLineCellCommentItemModel;

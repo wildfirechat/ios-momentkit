@@ -28,6 +28,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <WFChatClient/WFCChatClient.h>
 #import <WFMomentClient/WFMomentClient.h>
 
 @interface SDWeiXinPhotoContainerView : UIView

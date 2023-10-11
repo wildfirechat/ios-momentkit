@@ -74,7 +74,7 @@
     
     _iconView = [UIImageView new];
     _iconView.backgroundColor = [UIColor clearColor];
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     _iconView.layer.borderColor = [UIColor whiteColor].CGColor;
     _iconView.layer.borderWidth = 2;
     _iconView.layer.masksToBounds = YES;
@@ -127,7 +127,7 @@
     _userId = userId;
     WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:self.userId refresh:refresh];
     _nameLabel.text = me.displayName;
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserInfoUpdated:) name:kUserInfoUpdated object:userId];
     
@@ -163,7 +163,7 @@
     WFCCUserInfo *userInfo = notification.userInfo[@"userInfo"];
     if ([self.userId isEqualToString:userInfo.userId]) {
         _nameLabel.text = userInfo.displayName;
-        [_iconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     }
 }
 
@@ -184,11 +184,11 @@
         if ([lastContent isKindOfClass:[WFMFeedMessageContent class]]) {
             WFMFeedMessageContent *feedContent = (WFMFeedMessageContent *)lastContent;
             WFCCUserInfo *userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:feedContent.sender refresh:NO];
-            [_newMsgIconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+            [_newMsgIconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
         } else if ([lastContent isKindOfClass:[WFMCommentMessageContent class] ]) {
             WFMCommentMessageContent *commentContent = (WFMCommentMessageContent *)lastContent;
             WFCCUserInfo *userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:commentContent.sender refresh:NO];
-            [_newMsgIconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+            [_newMsgIconView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
         }
         
 

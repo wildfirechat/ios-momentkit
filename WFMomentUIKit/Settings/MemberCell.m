@@ -103,7 +103,7 @@
         
         self.nameLabel.hidden = NO;
         self.nameLabel.text = userInfo.displayName;
-        [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
+        [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     } else {
         self.nameLabel.hidden = YES;
     }
