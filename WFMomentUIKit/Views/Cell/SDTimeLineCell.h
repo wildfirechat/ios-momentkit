@@ -52,4 +52,5 @@
 
 @property (nonatomic, copy) void (^didClickCommentLabelBlock)(long long commentId, NSString *commentUserId, CGRect rectInWindow, UITableViewCell *cell, UIView *commetView);
 
+@property (nonatomic, copy) void (^didLongClickCommentLabelBlock)(long long commentId, NSString *commentUserId, CGRect rectInWindow, UITableViewCell *cell, UIView *commetView);
 @end

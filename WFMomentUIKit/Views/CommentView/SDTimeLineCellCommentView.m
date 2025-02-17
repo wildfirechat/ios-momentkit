@@ -105,6 +105,7 @@
         label.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:14];
         label.delegate = self;
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickComment:)]];
+        [label addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongClickComment:)]];
         [self addSubview:label];
         [self.commentLabelsArray addObject:label];
     }
@@ -132,6 +133,22 @@
         }
     }
 }
+
+- (void)onLongClickComment:(UILongPressGestureRecognizer *)sender {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *cell = sender.view;
+    CGRect rect = [cell.superview convertRect:cell.frame toView:window];
+    
+    for (int i = 0; i < self.commentLabelsArray.count; i++) {
+        if ([[self.commentLabelsArray objectAtIndex:i] isEqual:cell]) {
+            SDTimeLineCellCommentItemModel *model = self.commentItemsArray[i];
+            if (self.didLongClickCommentLabelBlock) {
+                self.didLongClickCommentLabelBlock(model.comment.commentUid, model.comment.sender, rect, cell);
+            }
+        }
+    }
+}
+
 - (void)setLikeItemsArray:(NSArray *)likeItemsArray
 {
     _likeItemsArray = likeItemsArray;

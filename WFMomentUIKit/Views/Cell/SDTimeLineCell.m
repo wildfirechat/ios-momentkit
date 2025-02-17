@@ -290,6 +290,10 @@ NSString *const kSDTimeLineCellOperationButtonClickedNotification = @"SDTimeLine
         ws.didClickCommentLabelBlock(commentId, commentUserId, rectInWindow, ws, commetView);
     }];
     
+    [_commentView setDidLongClickCommentLabelBlock:^(long long commentId, NSString *commentUserId, CGRect rectInWindow, UIView *commetView) {
+        ws.didLongClickCommentLabelBlock(commentId, commentUserId, rectInWindow, ws, commetView);
+    }];
+    
     [_iconView sd_setImageWithURL:[NSURL URLWithString:model.iconName] placeholderImage: [WFCUImage imageNamed:@"PersonalChat"]];
     _nameLable.text = model.name;
     _contentLabel.text = model.msgContent;

@@ -436,6 +436,19 @@ static CGFloat textFieldH = 40;
             }
         }];
         
+        [cell setDidLongClickCommentLabelBlock:^(long long commentId, NSString *commentUserId, CGRect rectInWindow, UITableViewCell *cell, UIView *commetView) {
+            if ([cell isKindOfClass:[SDTimeLineCell class]]) {
+                SDTimeLineCell *tlCell = (SDTimeLineCell *)cell;
+                if ([tlCell.model.feed.sender isEqualToString:[WFCCNetworkService sharedInstance].userId]) {
+                    [ws displayMenu:commentId inView:commetView];
+                    return;
+                }
+            }
+            if ([commentUserId isEqualToString:[WFCCNetworkService sharedInstance].userId]) {
+                [ws displayMenu:commentId inView:commetView];
+            }
+        }];
+        
         [cell setPortraitClickedBlock:^(NSIndexPath *indexPath) {
             if (!weakSelf.userId) {
                 SDTimeLineCellModel *model = weakSelf.dataArray[indexPath.row];
