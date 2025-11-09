@@ -153,7 +153,7 @@ static CGFloat textFieldH = 40;
         }
     }
     
-    _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
+    _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 55)];
     _refreshHeader.scrollView = self.tableView;
     __weak typeof(_refreshHeader) weakHeader = _refreshHeader;
     
