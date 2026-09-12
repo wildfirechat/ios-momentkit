@@ -161,13 +161,47 @@
 }
 
 - (void)addMoreMedia {
-    UIActionSheet *actionSheet =
-    [[UIActionSheet alloc] initWithTitle:nil
-                                delegate:self
-                       cancelButtonTitle:@"取消"
-                  destructiveButtonTitle:@"拍照"
-                       otherButtonTitles:@"相册", nil];
-    [actionSheet showInView:self.view];
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"拍照"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf takePhotoAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"相册"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf pickFromAlbumAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)takePhotoAction {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    if ([UIImagePickerController
+         isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else {
+        NSLog(@"无法连接相机");
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)pickFromAlbumAction {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 
@@ -198,29 +232,6 @@
     if(textView.text.length<1) {
         textView.text=Feed_Placeholder;
         textView.textColor= [UIColor lightGrayColor];
-    }
-}
-
-
-#pragma mark -  UIActionSheetDelegate <NSObject>
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 0) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        if ([UIImagePickerController
-             isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        } else {
-            NSLog(@"无法连接相机");
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        [self presentViewController:picker animated:YES completion:nil];
-        
-    } else if (buttonIndex == 1) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:picker animated:YES completion:nil];
     }
 }
 

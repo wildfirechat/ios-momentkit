@@ -50,7 +50,7 @@
 
 static CGFloat textFieldH = 40;
 
-@interface SDTimeLineTableViewController () <SDTimeLineCellDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, SDTimeLineTableHeaderViewDelegate, WFMomentReceiveMessageDelegate, WFCUFaceBoardDelegate, KZVideoViewControllerDelegate>
+@interface SDTimeLineTableViewController () <SDTimeLineCellDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, SDTimeLineTableHeaderViewDelegate, WFMomentReceiveMessageDelegate, WFCUFaceBoardDelegate, KZVideoViewControllerDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign) BOOL isReplayingComment;
@@ -265,14 +265,74 @@ static CGFloat textFieldH = 40;
     return model;
 }
 - (void)rightBarButtonItemClick {
-   
-    UIActionSheet *actionSheet =
-    [[UIActionSheet alloc] initWithTitle:nil
-                                delegate:self
-                       cancelButtonTitle:@"取消"
-                  destructiveButtonTitle:@"拍照"
-                       otherButtonTitles:@"相册", @"文字", nil];
-    [actionSheet showInView:self.view];
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"拍照"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf takePhotoAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"相册"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf pickFromAlbumAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"文字"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf createTextFeedAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)takePhotoAction {
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    if ([UIImagePickerController
+//         isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    } else {
+//        NSLog(@"无法连接相机");
+//        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    }
+//    [self presentViewController:picker animated:YES completion:nil];
+
+#if TARGET_IPHONE_SIMULATOR
+    [self.view makeToast:@"模拟器不支持相机" duration:1 position:CSToastPositionCenter];
+#else
+    KZVideoViewController *videoVC = [[KZVideoViewController alloc] init];
+    videoVC.delegate = self;
+    [videoVC startAnimationWithType:KZVideoViewShowTypeSingle selectExist:NO];
+#endif
+}
+
+- (void)pickFromAlbumAction {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.isChangeBackgroudView = NO;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)createTextFeedAction {
+    CreateFeedViewController *createFeedVC = [[CreateFeedViewController alloc] init];
+    createFeedVC.type = WFMContent_Text_Type;
+    createFeedVC.onPostFeed = ^(WFMFeed * _Nonnull feed) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataArray insertObject:[self modelOfFeed:feed] atIndex:0];
+            [self.tableView reloadData];
+            [self saveCache];
+        });
+    };
+    [self.navigationController pushViewController:createFeedVC animated:YES];
 }
 
 - (void)viewMyComments {
@@ -280,48 +340,6 @@ static CGFloat textFieldH = 40;
     vc.isNew = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-#pragma mark -  UIActionSheetDelegate <NSObject>
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 0) {
-//        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//        picker.delegate = self;
-//        if ([UIImagePickerController
-//             isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        } else {
-//            NSLog(@"无法连接相机");
-//            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//        }
-//        [self presentViewController:picker animated:YES completion:nil];
-        
-#if TARGET_IPHONE_SIMULATOR
-        [self.view makeToast:@"模拟器不支持相机" duration:1 position:CSToastPositionCenter];
-#else
-        KZVideoViewController *videoVC = [[KZVideoViewController alloc] init];
-        videoVC.delegate = self;
-        [videoVC startAnimationWithType:KZVideoViewShowTypeSingle selectExist:NO];
-#endif
-    } else if (buttonIndex == 1) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        self.isChangeBackgroudView = NO;
-        [self presentViewController:picker animated:YES completion:nil];
-    } else if (buttonIndex == 2) {
-        CreateFeedViewController *createFeedVC = [[CreateFeedViewController alloc] init];
-        createFeedVC.type = WFMContent_Text_Type;
-        createFeedVC.onPostFeed = ^(WFMFeed * _Nonnull feed) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.dataArray insertObject:[self modelOfFeed:feed] atIndex:0];
-                [self.tableView reloadData];
-                [self saveCache];
-            });
-        };
-        [self.navigationController pushViewController:createFeedVC animated:YES];
-    }
-}
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
